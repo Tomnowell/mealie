@@ -613,9 +613,15 @@ class RecipeController(BaseRecipeController):
         recipe = self.mixins.get_one(slug)
         data_service = RecipeDataService(recipe.id)
         data_service.write_image(image, extension)
-
         new_version = self.recipes.update_image(slug, extension)
         return UpdateImageResponse(image=new_version)
+
+    @router.delete("/{slug}/image", tags=["Recipe: Images and Assets"])
+    def delete_recipe_image(self, slug: str):
+        recipe = self.mixins.get_one(slug)
+        data_service = RecipeDataService(recipe.id)
+        data_service.delete_image()
+        self.recipes.delete_image(slug)
 
     @router.post("/{slug}/assets", response_model=RecipeAsset, tags=["Recipe: Images and Assets"])
     def upload_recipe_asset(

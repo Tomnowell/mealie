@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-start align-top py-2">
-    <RecipeImageUploadBtn class="my-1" :slug="recipe.slug" @upload="uploadImage" @refresh="imageKey++" />
+    <RecipeImageUploadBtn class="my-1" :slug="recipe.slug" @upload="uploadImage" @delete = "deleteImage" @refresh="imageKey++" />
     <RecipeSettingsMenu
       class="my-1 mx-1"
       :value="recipe.settings"
@@ -59,7 +59,6 @@ export default defineComponent({
     const { user } = usePageUser();
     const api = useUserApi();
     const { imageKey } = usePageState(props.recipe.slug);
-
     const canEditOwner = computed(() => {
       return user.id === props.recipe.userId || user.admin;
     })
@@ -86,10 +85,21 @@ export default defineComponent({
       imageKey.value++;
     }
 
+    async function deleteImage() {
+      if (props.recipe.image == null) {
+        return;
+      }
+      const response = await api.recipes.deleteImage(props.recipe.slug);
+      if (response) {
+        props.recipe.image = null
+      }
+    }
+
     return {
       user,
       canEditOwner,
       uploadImage,
+      deleteImage,
       imageKey,
       allUsers,
       ownerHousehold,

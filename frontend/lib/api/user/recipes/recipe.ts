@@ -127,6 +127,10 @@ export class RecipeAPI extends BaseCRUDAPI<CreateRecipe, Recipe, Recipe> {
     return this.requests.put<UpdateImageResponse, FormData>(routes.recipesRecipeSlugImage(slug), formData);
   }
 
+  deleteImage(slug: string) {
+    return this.requests.delete<UpdateImageResponse>(routes.recipesRecipeSlugImage(slug));
+  }
+
   updateImagebyURL(slug: string, url: string) {
     return this.requests.post<UpdateImageResponse>(routes.recipesRecipeSlugImage(slug), { url });
   }

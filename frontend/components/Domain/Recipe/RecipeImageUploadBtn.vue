@@ -9,7 +9,7 @@
           {{ $t("general.image") }}
         </v-btn>
       </template>
-      <v-card width="400">
+      <v-card width="450">
         <v-card-title class="headline flex mb-0">
           <div>
             {{ $t("recipe.recipe-image") }}
@@ -22,6 +22,10 @@
             :post="false"
             @uploaded="uploadImage"
           />
+          <v-btn class="ml-2" color="error" :loading="loading" :disabled="!slug" @click="deleteImage">
+            <v-icon> {{ $globals.icons.delete }} </v-icon>
+            {{ $t("general.delete") }}
+          </v-btn>
         </v-card-title>
         <v-card-text class="mt-n5">
           <div>
@@ -45,6 +49,7 @@ import { useUserApi } from "~/composables/api";
 
 const REFRESH_EVENT = "refresh";
 const UPLOAD_EVENT = "upload";
+const DELETE_EVENT = "delete";
 
 export default defineComponent({
   props: {
@@ -65,6 +70,11 @@ export default defineComponent({
       state.menu = false;
     }
 
+    function deleteImage() {
+      context.emit(DELETE_EVENT);
+      state.menu = false;
+    }
+
     const api = useUserApi();
     async function getImageFromURL() {
       state.loading = true;
@@ -81,6 +91,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       uploadImage,
+      deleteImage,
       getImageFromURL,
       messages,
     };

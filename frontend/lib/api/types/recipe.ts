@@ -492,7 +492,7 @@ export interface ScrapeRecipeTest {
   url: string;
   useOpenAI?: boolean;
 }
-export interface SlugResponse {}
+export interface SlugResponse { }
 export interface TagIn {
   name: string;
 }

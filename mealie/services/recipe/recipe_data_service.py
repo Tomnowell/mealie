@@ -108,6 +108,14 @@ class RecipeDataService(BaseService):
 
         return image_path
 
+    def delete_image(self) -> None:
+        image_dir = self.dir_image
+
+        try:
+            shutil.rmtree(image_dir)
+        except Exception as e:
+            self.logger.exception(f"Failed to delete image data: {e}")
+
     async def scrape_image(self, image_url: str | dict[str, str] | list[str]) -> None:
         self.logger.info(f"Image URL: {image_url}")
 
