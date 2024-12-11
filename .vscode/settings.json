@@ -59,7 +59,6 @@
     "README.md": "LICENSE, SECURITY.md"
   },
   "[vue]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
   },
-  "vue.autoInsert.bracketSpacing": false
 }
