@@ -17,7 +17,7 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "eslint.workingDirectories": [
     "./frontend"
   ],
@@ -59,6 +59,6 @@
     "README.md": "LICENSE, SECURITY.md"
   },
   "[vue]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
 }
