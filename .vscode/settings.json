@@ -17,7 +17,7 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "eslint.workingDirectories": [
     "./frontend"
   ],
@@ -60,5 +60,6 @@
   },
   "[vue]": {
     "editor.formatOnSave": false
-  }
+  },
+  "vue.autoInsert.bracketSpacing": false
 }
