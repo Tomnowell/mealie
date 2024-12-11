@@ -60,5 +60,5 @@
   },
   "[vue]": {
     "editor.formatOnSave": false
-  },
+  }
 }
